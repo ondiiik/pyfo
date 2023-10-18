@@ -5,7 +5,7 @@ Created on Aug 3, 2023
 """
 from __future__ import annotations
 
-import ast
+import ast_comments as ast
 from dataclasses import dataclass
 from pathlib import Path
 from typing import (
@@ -1119,6 +1119,27 @@ class SyntaxTreeElementNonlocal(SyntaxTreeElement):
         )
 
 
+@_register_ast(ast.Comment)  # Comes form ast_comments
+@dataclass(frozen=True)
+class SyntaxTreeElementComment(SyntaxTreeElement):
+    value: str
+
+    @classmethod
+    def build(cls, file_info: FileInfo, ast_inst: ast.stmt) -> SyntaxTreeElement:
+        return cls(
+            ast_inst=ast_inst,
+            rich_alias=node_alias(" #", "label"),
+            nodes=None,
+            tags=_build_tags(file_info, ast_inst),
+            file_info=file_info,
+            value=ast_inst.value,
+        )
+
+    @override
+    def __str__(self) -> str:
+        return f"{self.rich_alias} [i #808080]{self.value.split('#', 1)[1].strip()}[/]"
+
+
 def _build_elements(
     file_info: FileInfo,
     ast_inst: Sequence[ast.stmt] | ast.stmt,
@@ -1180,6 +1201,7 @@ __all__ = (
     "SyntaxTreeElementCall",
     "SyntaxTreeElementCase",
     "SyntaxTreeElementClass",
+    "SyntaxTreeElementComment",
     "SyntaxTreeElementCompare",
     "SyntaxTreeElementConstant",
     "SyntaxTreeElementContext",

@@ -7,7 +7,7 @@ from __future__ import annotations
 
 from .datatypes import FileInfo, SyntaxTreeElementRoot, node_alias
 
-import ast
+import ast_comments as ast
 from pathlib import Path
 from rich.padding import Padding
 from rich.tree import Tree

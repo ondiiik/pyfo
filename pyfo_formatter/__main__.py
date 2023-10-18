@@ -5,8 +5,8 @@ Created on Aug 3, 2023
 """
 from __future__ import annotations
 
-from pyfo.console import Table, console, console_err
-from pyfo.rules_checker import run_checker
+from pyfo_formatter.console import Table, console, console_err
+from pyfo_formatter.rules_checker import run_checker
 
 import rich_click as click
 from sys import exit

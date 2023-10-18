@@ -9,27 +9,27 @@ for arg in sys.argv:
         sys.exit(-1)
 
 _dependency_groups = {
-    "user": ["black", "rich", "rich-click", "typing-extensions"],
+    "user": ["black", "rich", "rich-click", "typing-extensions", "ast-comments"],
 }
 
 setup(
-    name="pyfo",
+    name="pyfo-formatter",
     version="0.9.8",
     author="OSi",
     author_email="ondrej.sienczak@gmail.com",
     url="https://github.com/ondiiik/pyfo",
     packages=[
-        "pyfo",
-        "pyfo.code_parser",
-        "pyfo.console",
-        "pyfo.rules_checker",
+        "pyfo_formatter",
+        "pyfo_formatter.code_parser",
+        "pyfo_formatter.console",
+        "pyfo_formatter.rules_checker",
     ],
     python_requires=">=3.10",
-    install_requires=["pyfo[user]"],
+    # install_requires=["pyfo-formater[user]"],
     extras_require=_dependency_groups,
     entry_points={
         "console_scripts": [
-            "pyfo=pyfo.__main__:main",
+            "pyfo-formatter=pyfo_formatter.__main__:main",
         ],
     },
     zip_safe=False,

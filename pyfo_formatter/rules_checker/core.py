@@ -5,8 +5,8 @@ Created on Aug 4, 2023
 """
 from __future__ import annotations
 
-from pyfo.code_parser.core import SyntaxTree
-from pyfo.code_parser.datatypes import (
+from pyfo_formatter.code_parser.core import SyntaxTree
+from pyfo_formatter.code_parser.datatypes import (
     SyntaxTreeElement,
     SyntaxTreeElementAnnotation,
     SyntaxTreeElementAssign,
@@ -15,7 +15,7 @@ from pyfo.code_parser.datatypes import (
     SyntaxTreeElementImport,
     SyntaxTreeElementImportFrom,
 )
-from pyfo.console import (
+from pyfo_formatter.console import (
     Group,
     Padding,
     Panel,
@@ -157,7 +157,7 @@ def check_rules(st: SyntaxTree, **kwargs) -> None:
 
     :return:      `True` on success, `False` if some of tests failed.
     """
-    rules_checker = import_module("pyfo.rules_checker")
+    rules_checker = import_module("pyfo_formatter.rules_checker")
     for attr_name in dir(rules_checker):
         attr = getattr(rules_checker, attr_name)
         try:

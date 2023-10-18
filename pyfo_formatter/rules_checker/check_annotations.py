@@ -7,13 +7,13 @@ from __future__ import annotations
 
 from .core import RuleChecker
 
-from pyfo.code_parser.datatypes import (
+from pyfo_formatter.code_parser.datatypes import (
     SyntaxTreeElement,
     SyntaxTreeElementFunction,
     SyntaxTreeElementImportFrom,
     SyntaxTreeElementString,
 )
-from pyfo.console import Markdown, RenderableType
+from pyfo_formatter.console import Markdown, RenderableType
 
 from typing import Tuple
 

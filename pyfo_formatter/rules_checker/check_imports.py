@@ -7,13 +7,14 @@ from __future__ import annotations
 
 from .core import RuleChecker
 
-from pyfo.code_parser.datatypes import (
+from pyfo_formatter.code_parser.datatypes import (
     SyntaxTreeElement,
+    SyntaxTreeElementComment,
     SyntaxTreeElementImport,
     SyntaxTreeElementImportFrom,
     SyntaxTreeElementString,
 )
-from pyfo.console import Markdown, RenderableType
+from pyfo_formatter.console import Markdown, RenderableType
 
 
 @RuleChecker.register(id="imports", title="Imports ordering")
@@ -44,15 +45,29 @@ class CheckImports(RuleChecker):
 
         for idx, node in enumerate(self.nodes):
             if not isinstance(
-                node, (SyntaxTreeElementImport, SyntaxTreeElementImportFrom)
+                node,
+                (
+                    SyntaxTreeElementImport,
+                    SyntaxTreeElementImportFrom,
+                    SyntaxTreeElementComment,
+                ),
             ):
                 break
         else:
             self.imports_only = True
 
-        self.imports = self.nodes[:idx]
+        self.imports = list(
+            filter(
+                lambda i: isinstance(
+                    i, (SyntaxTreeElementImport, SyntaxTreeElementImportFrom)
+                ),
+                self.nodes[:idx],
+            )
+        )
         all_nodes = list(self.st.root)
-        self.rest = all_nodes[all_nodes.index(self.imports[-1]) + 1 :] if self.imports else []
+        self.rest = (
+            all_nodes[all_nodes.index(self.imports[-1]) + 1 :] if self.imports else []
+        )
 
     def _check_imports_at_beginning(self) -> None:
         if self.imports_only:

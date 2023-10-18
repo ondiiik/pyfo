@@ -5,9 +5,12 @@ Created on Aug 8, 2023
 """
 from __future__ import annotations
 
-from pyfo.code_parser import SyntaxTree
-from pyfo.console import Group, Panel, RenderableType, console
-from pyfo.rules_checker.core import RulesCheckerFindingReportedError, check_rules
+from pyfo_formatter.code_parser import SyntaxTree
+from pyfo_formatter.console import Group, Panel, RenderableType, console
+from pyfo_formatter.rules_checker.core import (
+    RulesCheckerFindingReportedError,
+    check_rules,
+)
 
 from glob import glob
 from os import system
