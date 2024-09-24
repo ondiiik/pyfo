@@ -592,8 +592,6 @@ class SyntaxTreeElementExpression(SyntaxTreeElement):
                 return SyntaxTreeElementConstant.build(file_info, ast_inst.value)
             case ast.Call():
                 return SyntaxTreeElementCall.build(file_info, ast_inst.value)
-            case ast.Ellipsis():
-                return SyntaxTreeElementEllipsis.build(file_info, ast_inst)
             case _:
                 return cls(
                     ast_inst=ast_inst,
@@ -609,7 +607,6 @@ class SyntaxTreeElementExpression(SyntaxTreeElement):
         return f"{self.rich_alias} {self.name}"
 
 
-@_register_ast(ast.Ellipsis)
 @dataclass(frozen=True)
 class SyntaxTreeElementEllipsis(SyntaxTreeElement):
     @classmethod

@@ -24,7 +24,7 @@ setup(
         "pyfo_formatter.console",
         "pyfo_formatter.rules_checker",
     ],
-    python_requires=">=3.10",
+    python_requires=">=3.12",
     # install_requires=["pyfo-formater[user]"],
     extras_require=_dependency_groups,
     entry_points={
