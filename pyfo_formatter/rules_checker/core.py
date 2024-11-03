@@ -13,6 +13,7 @@ from pyfo_formatter.code_parser.datatypes import (
     SyntaxTreeElementClass,
     SyntaxTreeElementFunction,
     SyntaxTreeElementImport,
+    SyntaxTreeElementAsyncFunction,
     SyntaxTreeElementImportFrom,
 )
 from pyfo_formatter.console import (
@@ -117,7 +118,7 @@ class RuleChecker(ABC):
 
         for member in self.nodes:
             match member:
-                case SyntaxTreeElementClass() | SyntaxTreeElementFunction() | SyntaxTreeElementAnnotation():
+                case SyntaxTreeElementClass() | SyntaxTreeElementFunction() | SyntaxTreeElementAsyncFunction() | SyntaxTreeElementAnnotation():
                     if is_public_root(member.name):
                         public_members.append(member)
                 case SyntaxTreeElementImport() | SyntaxTreeElementImportFrom():

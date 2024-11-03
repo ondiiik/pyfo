@@ -939,6 +939,20 @@ class SyntaxTreeElementForCycle(SyntaxTreeElement):
         )
 
 
+@_register_ast(ast.AsyncFor)
+@dataclass(frozen=True)
+class SyntaxTreeElementAsyncForCycle(SyntaxTreeElement):
+    @classmethod
+    def build(cls, file_info: FileInfo, ast_inst: ast.stmt) -> SyntaxTreeElement:
+        return cls(
+            ast_inst=ast_inst,
+            rich_alias=node_alias("afor", "repeat_button"),
+            nodes=_build_elements(file_info, ast_inst.body),
+            tags=_build_tags(file_info, ast_inst),
+            file_info=file_info,
+        )
+
+
 @_register_ast(ast.While)
 @dataclass(frozen=True)
 class SyntaxTreeElementWhileCycle(SyntaxTreeElement):

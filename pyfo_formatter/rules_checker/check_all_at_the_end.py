@@ -13,6 +13,7 @@ from pyfo_formatter.code_parser.datatypes import (
     SyntaxTreeElementAssign,
     SyntaxTreeElementCall,
     SyntaxTreeElementTuple,
+    SyntaxTreeElementAsyncFunction,
 )
 from pyfo_formatter.console import Markdown, RenderableType
 
